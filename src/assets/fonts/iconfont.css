@@ -1,0 +1,25 @@
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot?t=1608541780649'); /* IE9 */
+  src: url('iconfont.eot?t=1608541780649#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAPAAAsAAAAAB2QAAAN0AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDBgqCQIIqATYCJAMMCwgABCAFhG0HQht8BhEVnG/I/gZR5LKuHDDZttpeMXvd6dGsHJ7teLdN46j4YJlwGuBPwGfADAAAAAAQRLHfb0++iCYxImSTBJEmVq2SNJMIlcoQEiERxeNvNPojiL9vs7vvd9yU8clRaUDhpYVZDokFFPXD/vIdrHTXGI2Zoa59xPt1gBPAultaadLVmqZAvCV6dGkdWob7vcvl4X72N+Sio2ptPQlXIdsAcLbMGiBg4rAbXCNOFjxziwy2LLLhLfGl7o8x4BKYZDEf8MxlC+kMDtt/CRDQ5hP3Tv+0LzAf0HdsbBp7nX8MMO68C3AvjALqvA2SoDeMXXkRpyEgrm2K7I7TFTDgjEkC5Ky7W2GQsvOaVhElwiUrWz/eQBPNF3k5bv3vy5cXEypUjJmbR5EOWE1m/wpV/69rcAnQjucF2DowMAUccir1b1FhfoqJK5ZWXxvmhI6V+g++RjWFzT88UALpMZqTAAaooJjM2prYegZ1Z91sAMKwYR9cMbiiWze2YFGXito5t3EA1MehjbdwrKENH/XcL2MrxBK6WJ1sm94b0oqq/uIiKnu0jd1NEBPVA5i8/2Zvy9Uyuwrw8p3HJcJe/fRrPdcr+HzFobcoryr9pHdYUbQPELLWviVwbPZiJqR9tGQSm3Sy/3p83nlfny3zjpdgHiy3EeHXjubth6WaqenY59cfoofSTYf/7fTC6trTwJfnPLh+2G4jO27uYPUL7Vf8M292l7vfmIjPVPSx+Dn0uovjjS+De//jTivwqdYXYAdAsFWtcgJVFP/Gb3j85mmzYP+1s6cB+G5/hR8N1GjXiChFa+277+VjADjXGw5rsoXaZgFm5T6yCuJmCgIY4bzf/vrWzSCiSjFURAsmqkM6O4WQhGmERc0ibmx1fULBGUXaEIzcAIisB6i0J5isZ9LZH4SU/SEsGwWObteN7NhjLd19QPjGGMB7DbQwibRc3B20nqMqRW+U1Pv8NVKmU+BaTrZ0ggnSGHOysvKYJUgyMRyD8zCKDKRkiijYKjCneduWZVeyhIlz3Q4Q9IahAHhXAzTBSEi3M+vOff4cUkoib6hGVVFeQySj+wcui9OCPLEkrVTXckmmTPEwJgGJGDFwDIahSMQAafmwIiQwS6FHNpVnm+1kW4s1vy1+vl0wYuxTZVQ07Zt3HeGADvBSBsmaTpQwAeZy') format('woff2'),
+  url('iconfont.woff?t=1608541780649') format('woff'),
+  url('iconfont.ttf?t=1608541780649') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
+  url('iconfont.svg?t=1608541780649#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-mobile:before {
+  content: "\e651";
+}
+
+.icon-identifyingcode:before {
+  content: "\e61c";
+}
+
