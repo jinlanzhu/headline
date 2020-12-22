@@ -27,7 +27,9 @@
         >
       </el-form-item>
       <el-form-item>
-        <el-button class="login-btn" type="primary">登录</el-button>
+        <el-button class="login-btn" type="primary" @click="loginEvent"
+          >登录</el-button
+        >
       </el-form-item>
     </el-form>
   </div>
@@ -48,7 +50,12 @@ export default {
       loginChecked: false
     }
   },
-  components: {}
+  components: {},
+  methods: {
+    loginEvent() {
+      this.$emit('loginEvent')
+    }
+  }
 }
 </script>
 

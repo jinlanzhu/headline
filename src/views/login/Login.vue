@@ -1,6 +1,6 @@
 <template>
   <div id="login">
-    <login-form :login-form="loginForm"></login-form>
+    <login-form :login-form="loginForm" @loginEvent="loginEvent"></login-form>
   </div>
 </template>
 
@@ -17,6 +17,9 @@ export default {
   },
   components: {
     LoginForm
+  },
+  methods: {
+    loginEvent() {}
   }
 }
 </script>
