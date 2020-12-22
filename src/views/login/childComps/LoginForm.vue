@@ -3,11 +3,12 @@
     <div class="avatar">
       <img src="@/assets/img/login/reba-2.jpg" alt="" />
     </div>
+    <!-- :rules="loginRules" -->
     <el-form
       :model="loginForm"
-      :rules="loginRules"
       ref="ruleForm"
       class="demo-ruleForm"
+      :rules="loginRules"
     >
       <el-form-item prop="mobile">
         <el-input
@@ -21,13 +22,17 @@
           prefix-icon="iconfont icon-identifyingcode"
         ></el-input>
       </el-form-item>
-      <el-form-item>
-        <el-checkbox v-model="loginChecked"
+      <el-form-item prop="agree">
+        <el-checkbox v-model="loginForm.agree"
           >我已阅读并同意用户协议和隐私条款</el-checkbox
         >
       </el-form-item>
       <el-form-item>
-        <el-button class="login-btn" type="primary" @click="loginEvent"
+        <el-button
+          class="login-btn"
+          type="primary"
+          @click="loginEvent('ruleForm')"
+          :loading="loading"
           >登录</el-button
         >
       </el-form-item>
@@ -37,23 +42,42 @@
 
 <script>
 export default {
-  props: ['loginForm'],
+  props: ['loginForm', 'loading'],
   data() {
     return {
       loginRules: {
         mobile: [
-          { required: true, message: '请输入活动名称', trigger: 'blur' },
-          { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+          { required: true, message: '请输入手机号', trigger: 'blur' },
+          {
+            pattern: /^1[3|5|7|8|9]\d{9}$/,
+            message: '请输入正确的号码格式',
+            trigger: 'change'
+          }
         ],
-        code: [{ required: true, message: '请输入活动名称', trigger: 'blur' }]
-      },
-      loginChecked: false
+        code: [
+          { required: true, message: '验证码不能为空', trigger: 'blur' },
+          { pattern: /^\d{6}$/, message: '请输入正确的验证码格式' }
+        ],
+        agree: [
+          {
+            validator: (rule, value, callback) => {
+              if (value) {
+                callback()
+              } else {
+                callback(new Error('请勾选同意用户协议'))
+              }
+            },
+            trigger: 'change'
+          }
+        ]
+      }
     }
   },
   components: {},
   methods: {
-    loginEvent() {
-      this.$emit('loginEvent')
+    loginEvent(formName) {
+      console.log(this.$refs)
+      this.$emit('loginEvent', formName)
     }
   }
 }
