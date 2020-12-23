@@ -41,7 +41,7 @@ export default {
         if (res) {
           this.$message.success('登录成功！')
           this.loading = false
-          window.sessionStorage.setItem('token', res.data.token)
+          window.sessionStorage.setItem('user', JSON.stringify(res.data))
           this.$router.push({ name: 'home' })
         } else {
           this.$message.error('登录失败，手机号或验证码错误')
