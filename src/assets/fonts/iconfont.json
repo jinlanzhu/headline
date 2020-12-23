@@ -6,6 +6,69 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "1160511",
+      "name": "images",
+      "font_class": "images",
+      "unicode": "e70f",
+      "unicode_decimal": 59151
+    },
+    {
+      "icon_id": "6404685",
+      "name": "log out",
+      "font_class": "logout",
+      "unicode": "e786",
+      "unicode_decimal": 59270
+    },
+    {
+      "icon_id": "366455",
+      "name": "fans",
+      "font_class": "fans",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    },
+    {
+      "icon_id": "4745605",
+      "name": "commenting-o",
+      "font_class": "commenting-o",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "6286167",
+      "name": "Personal settings",
+      "font_class": "Personalsettings",
+      "unicode": "e65e",
+      "unicode_decimal": 58974
+    },
+    {
+      "icon_id": "6981798",
+      "name": "index",
+      "font_class": "index",
+      "unicode": "e647",
+      "unicode_decimal": 58951
+    },
+    {
+      "icon_id": "10735041",
+      "name": "Material_icon",
+      "font_class": "Material-icon",
+      "unicode": "e687",
+      "unicode_decimal": 59015
+    },
+    {
+      "icon_id": "11676813",
+      "name": "publish",
+      "font_class": "koudaifabu",
+      "unicode": "e637",
+      "unicode_decimal": 58935
+    },
+    {
+      "icon_id": "17758856",
+      "name": "content",
+      "font_class": "fenzu27-copy",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
       "icon_id": "1433793",
       "name": "mobile",
       "font_class": "mobile",
