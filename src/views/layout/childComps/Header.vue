@@ -11,7 +11,11 @@
     <span class="title">
       Pig's 小屋
     </span>
-    <header-avatar class="header-avatar" :user-info="userInfo"></header-avatar>
+    <header-avatar
+      class="header-avatar"
+      :user-info="userInfo"
+      @logOut="logOut"
+    ></header-avatar>
   </div>
 </template>
 
@@ -29,6 +33,9 @@ export default {
   methods: {
     collapseEvent() {
       this.$emit('collapseEvent')
+    },
+    logOut() {
+      this.$emit('logOut')
     }
   }
 }

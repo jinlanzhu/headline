@@ -1,5 +1,5 @@
 <template>
-  <el-dropdown trigger="click">
+  <el-dropdown trigger="click" @command="handleCommand">
     <span class="el-dropdown-link">
       <img :src="userInfo.photo" alt="" class="user-img" />
       <span class="user-name">{{ userInfo.name }}</span>
@@ -22,7 +22,13 @@ export default {
       avatarUrl: require('@/assets/img/layout/reba-2.jpg')
     }
   },
-  components: {}
+  components: {},
+  methods: {
+    // 退出登录
+    handleCommand() {
+      this.$emit('logOut')
+    }
+  }
 }
 </script>
 
