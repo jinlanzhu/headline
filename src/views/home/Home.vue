@@ -1,6 +1,8 @@
 <template>
   <div id="home">
-    <img src="@/assets/img/home/reba-6.jpg" alt="" />
+    <el-card class="box-card">
+      <img src="@/assets/img/home/reba-6.jpg" alt="" />
+    </el-card>
   </div>
 </template>
 
