@@ -10,7 +10,23 @@ export function request(config) {
 
   // 2. axios的拦截器
   // 2.1 请求拦截的作用
+
+
   instance.interceptors.request.use(config => {
+
+    // 任何所有请求会经过这里
+    // config 是当前请求相关的配置信息对象
+    // config 是可以修改的
+
+    // 通过axios请求拦截器添加token,保证拥有获取数据的权限
+    // 为请求头对象,添加token验证的Authorization字段
+    const user = JSON.parse(window.sessionStorage.getItem('user'))
+
+    // 如果有用户信息，则统一设置
+    if (user) {
+      config.headers.Authorization = `Bearer ${user.token}`
+    }
+    // 当这里 return config 之后请求才会真正的发出去
     return config
   }, err => {
 

@@ -6,11 +6,19 @@
   "description": "",
   "glyphs": [
     {
+<<<<<<< HEAD
       "icon_id": "17568134",
       "name": "collapse",
       "font_class": "collapse1",
       "unicode": "e61d",
       "unicode_decimal": 58909
+=======
+      "icon_id": "6186905",
+      "name": "collapse",
+      "font_class": "collapse-left",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+>>>>>>> layout
     },
     {
       "icon_id": "1160511",
