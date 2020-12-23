@@ -41,7 +41,7 @@ export default {
         if (res) {
           this.$message.success('登录成功！')
           this.loading = false
-          this.$router.push('/home')
+          this.$router.push({name: 'home'})
         } else {
           this.$message.error('登录失败，手机号或验证码错误')
           this.loading = false
