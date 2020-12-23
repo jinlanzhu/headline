@@ -41,6 +41,8 @@ export default {
         if (res) {
           this.$message.success('登录成功！')
           this.loading = false
+          //将token临时保存在sessionStorage中
+          window.sessionStorage.setItem('token', res.data.token)
           this.$router.push('/home')
         } else {
           this.$message.error('登录失败，手机号或验证码错误')
