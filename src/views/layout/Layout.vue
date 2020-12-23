@@ -1,11 +1,11 @@
 <template>
   <el-container id="layout">
     <el-aside width="200px">
-      <lay-aside></lay-aside>
+      <lay-aside :is-collapse="isCollapse"></lay-aside>
     </el-aside>
     <el-container>
       <el-header>
-        <header></header>
+        <lay-header :is-collapse="isCollapse"></lay-header>
       </el-header>
       <el-main>
         <!-- 子路由出口 -->
@@ -17,14 +17,16 @@
 
 <script>
 import LayAside from './childComps/Aside.vue'
-import Header from './childComps/Header.vue'
+import LayHeader from './childComps/Header.vue'
 export default {
   data() {
-    return {}
+    return {
+      isCollapse: false
+    }
   },
   components: {
     LayAside,
-    Header
+    LayHeader
   }
 }
 </script>

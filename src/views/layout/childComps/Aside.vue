@@ -3,7 +3,7 @@
     <!-- 头像 -->
     <aside-avatar></aside-avatar>
     <!-- 菜单栏 -->
-    <aside-menu></aside-menu>
+    <aside-menu :is-collapse="isCollapse"></aside-menu>
   </div>
 </template>
 
@@ -11,6 +11,7 @@
 import AsideMenu from './AsideMenu'
 import AsideAvatar from './AsideAvatar'
 export default {
+  props: ['isCollapse'],
   data() {
     return {}
   },
