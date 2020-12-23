@@ -1,6 +1,6 @@
 <template>
   <div id="home">
-    <h2>首页</h2>
+    <img src="@/assets/img/home/reba-6.jpg" alt="" />
   </div>
 </template>
 
@@ -13,5 +13,13 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
+#home {
+  width: 100%;
+  height: 100%;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
 </style>
