@@ -41,7 +41,8 @@ export default {
         if (res) {
           this.$message.success('登录成功！')
           this.loading = false
-          this.$router.push({name: 'home'})
+          window.sessionStorage.setItem('token', res.data.token)
+          this.$router.push({ name: 'home' })
         } else {
           this.$message.error('登录失败，手机号或验证码错误')
           this.loading = false
@@ -53,9 +54,6 @@ export default {
 
       console.log(this.$refs.loginForm.$refs[formName])
       this.$refs.loginForm.$refs[formName].validate((valid, err) => {
-        // if (!valid) {
-        //   return
-        // }
         if (!valid) {
           return
         }

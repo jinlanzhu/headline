@@ -5,7 +5,10 @@
     </el-aside>
     <el-container>
       <el-header>
-        <lay-header :is-collapse="isCollapse"></lay-header>
+        <lay-header
+          :is-collapse="isCollapse"
+          :user-info="userInfo"
+        ></lay-header>
       </el-header>
       <el-main>
         <!-- 子路由出口 -->
@@ -16,17 +19,31 @@
 </template>
 
 <script>
+import { getUserProfile } from '@/network/user.js'
+
 import LayAside from './childComps/Aside.vue'
 import LayHeader from './childComps/Header.vue'
 export default {
   data() {
     return {
-      isCollapse: false
+      isCollapse: false,
+      userInfo: {}
     }
   },
   components: {
     LayAside,
     LayHeader
+  },
+  created() {
+    this.loadUserProfile()
+  },
+  methods: {
+    loadUserProfile() {
+      getUserProfile().then(res => {
+        console.log(res)
+        this.userInfo = res.data
+      })
+    }
   }
 }
 </script>

@@ -5,28 +5,21 @@
     <span class="title">
       Pig's 小屋
     </span>
-    <header-avatar class="header-avatar"></header-avatar>
+    <header-avatar class="header-avatar" :user-info="userInfo"></header-avatar>
   </div>
 </template>
 
 <script>
-import { getUserProfile } from '@/network/user.js'
 import HeaderAvatar from './HeaderAvatar'
 export default {
-  props: ['isCollapse'],
+  props: ['isCollapse', 'userInfo'],
   data() {
     return {}
   },
   components: {
     HeaderAvatar
   },
-  mounted() {
-    // getUserProfile() {
-    getUserProfile().then(res => {
-      console.log(res)
-    })
-    // }
-  }
+  mounted() {}
 }
 </script>
 

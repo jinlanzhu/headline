@@ -1,8 +1,8 @@
 <template>
   <el-dropdown trigger="click">
     <span class="el-dropdown-link">
-      <img :src="avatarUrl" alt="" class="user-img" />
-      <span class="user-name">用户名称</span>
+      <img :src="userInfo.photo" alt="" class="user-img" />
+      <span class="user-name">{{ userInfo.name }}</span>
       <i class="el-icon-arrow-down el-icon--right user-icon"></i>
     </span>
     <el-dropdown-menu slot="dropdown">
@@ -16,6 +16,7 @@
 
 <script>
 export default {
+  props: ['userInfo'],
   data() {
     return {
       avatarUrl: require('@/assets/img/layout/reba-2.jpg')
