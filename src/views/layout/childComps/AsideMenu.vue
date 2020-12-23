@@ -5,9 +5,8 @@
     background-color="#002033"
     active-text-color="#ffd04b"
     class="el-menu-vertical-demo aside-menu"
+    :collapse-transition="false"
     :collapse="isCollapse"
-    @open="handleOpen"
-    @close="handleClose"
   >
     <el-menu-item index="1">
       <i class="iconfont icon-index"></i>

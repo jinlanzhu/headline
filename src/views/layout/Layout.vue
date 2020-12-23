@@ -1,6 +1,6 @@
 <template>
   <el-container id="layout">
-    <el-aside width="200px">
+    <el-aside :width="isCollapse ? '64px' : '200px'">
       <lay-aside :is-collapse="isCollapse"></lay-aside>
     </el-aside>
     <el-container>
@@ -8,6 +8,7 @@
         <lay-header
           :is-collapse="isCollapse"
           :user-info="userInfo"
+          @collapseEvent="collapseEvent"
         ></lay-header>
       </el-header>
       <el-main>
@@ -38,11 +39,15 @@ export default {
     this.loadUserProfile()
   },
   methods: {
+    // 加载个人信息资料
     loadUserProfile() {
       getUserProfile().then(res => {
         console.log(res)
         this.userInfo = res.data
       })
+    },
+    collapseEvent() {
+      this.isCollapse = !this.isCollapse
     }
   }
 }

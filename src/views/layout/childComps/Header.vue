@@ -1,7 +1,13 @@
 <template>
   <div class="header">
-    <!-- <i class="iconfont icon-collapse-left"></i> -->
-    <i class="el-icon-s-fold icon"> </i>
+    <i
+      :class="{
+        'el-icon-s-unfold icon': isCollapse,
+        'el-icon-s-fold icon': !isCollapse
+      }"
+      @click="collapseEvent"
+    >
+    </i>
     <span class="title">
       Pig's 小屋
     </span>
@@ -19,7 +25,12 @@ export default {
   components: {
     HeaderAvatar
   },
-  mounted() {}
+  mounted() {},
+  methods: {
+    collapseEvent() {
+      this.$emit('collapseEvent')
+    }
+  }
 }
 </script>
 
