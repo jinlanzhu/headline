@@ -4,8 +4,8 @@ import axios from 'axios'
 export function request(config) {
   // 1. 创建axios实例
   const instance = axios.create({
-    // baseURL: 'http://ttapi.research.itcast.cn',
-    baseURL: 'http://api-toutiao-web.itheima.net',
+    baseURL: 'http://ttapi.research.itcast.cn',
+    // baseURL: 'http://api-toutiao-web.itheima.net',
     timeout: 5000,
   })
 
