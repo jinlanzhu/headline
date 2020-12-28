@@ -1,18 +1,23 @@
 <template>
   <div id="fans">
-    分数
+    <fans-list :fans-list="fansList" :total="total"></fans-list>
   </div>
 </template>
 
 <script>
 import { getFansList } from '@/network/fans.js'
+
+import FansList from './childComps/FansList'
 export default {
   data() {
     return {
-      fansList: []
+      fansList: [],
+      total: 0
     }
   },
-  components: {},
+  components: {
+    FansList
+  },
   created() {
     this.loadFansList()
   },
@@ -20,6 +25,8 @@ export default {
     loadFansList() {
       getFansList().then(res => {
         console.log(res)
+        this.fansList = res.data.results
+        this.total = res.data.total_count
       })
     }
   }
