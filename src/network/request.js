@@ -4,10 +4,21 @@ import axios from 'axios'
 export function request(config) {
   // 1. 创建axios实例
   const instance = axios.create({
+    baseURL: 'http://rest.apizza.net/mock/027e324474700080d60b04c7c0126f57/',
     // baseURL: 'http://ttapi.research.itcast.cn',
-    baseURL: 'http://api-toutiao-web.itheima.net',
+    // baseURL: '/api', // 请求的基础路径
+    // baseURL: 'http://api-toutiao-web.itheima.net',
+    // baseURL: 'http://api-toutiao-web.itheima.net',
+    // baseURL: 'http://api-toutiao-web.itheima.net/app/v1_0',
     timeout: 5000,
+    // headers: {
+    //   'Content-Type': "application/json;charset=utf-8"
+    // }
+
+
   })
+
+  // instance.defaults.withCredentials = true;
 
   // 2. axios的拦截器
   // 2.1 请求拦截的作用
@@ -22,6 +33,7 @@ export function request(config) {
     // 通过axios请求拦截器添加token,保证拥有获取数据的权限
     // 为请求头对象,添加token验证的Authorization字段
     const user = JSON.parse(window.sessionStorage.getItem('user'))
+
 
     // 如果有用户信息，则统一设置
     if (user) {
