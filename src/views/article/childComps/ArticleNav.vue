@@ -16,21 +16,22 @@
       <el-form ref="form" :model="articleForm" label-width="80px">
         <el-form-item label="状态：">
           <el-radio-group v-model="articleForm.status">
-            <el-radio label="全部"></el-radio>
-            <el-radio label="草稿"></el-radio>
-            <el-radio label="待审核"></el-radio>
-            <el-radio label="审核通过"></el-radio>
-            <el-radio label="审核失败"></el-radio>
-            <el-radio label="已删除"></el-radio>
+            <el-radio :label="null">全部</el-radio>
+            <el-radio :label="0">草稿</el-radio>
+            <el-radio :label="1">待审核</el-radio>
+            <el-radio :label="2">审核通过</el-radio>
+            <el-radio :label="3">审核失败</el-radio>
+            <el-radio :label="4">已删除</el-radio>
           </el-radio-group>
         </el-form-item>
         <el-form-item label="频道：">
-          <el-select v-model="articleForm.region" placeholder="请选择">
+          <el-select v-model="articleForm.channel" placeholder="请选择">
+            <el-option label="全部" :value="null"></el-option>
             <el-option
               v-for="(item, index) in channels"
               :key="index"
               :label="item.name"
-              :value="item.name"
+              :value="item.id"
             ></el-option>
           </el-select>
         </el-form-item>
@@ -48,7 +49,9 @@
         </el-form-item>
 
         <el-form-item>
-          <el-button type="primary" size="small">筛选</el-button>
+          <el-button type="primary" size="small" @click="handleSearch"
+            >查询</el-button
+          >
         </el-form-item>
       </el-form>
     </el-card>
@@ -57,7 +60,7 @@
 
 <script>
 export default {
-  props: ['articleForm', 'channels'],
+  props: ['articleForm', 'channels', 'status'],
   data() {
     return {
       pickerOptions: {
@@ -95,7 +98,12 @@ export default {
       value2: ''
     }
   },
-  components: {}
+  components: {},
+  methods: {
+    handleSearch() {
+      this.$emit('hangdleSearch')
+    }
+  }
 }
 </script>
 

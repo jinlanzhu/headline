@@ -1,6 +1,11 @@
 <template>
   <div id="article">
-    <article-nav :article-form="articleForm" :channels="channels"></article-nav>
+    <article-nav
+      :article-form="articleForm"
+      :channels="channels"
+      :status="status"
+      @hangdleSearch="hangdleSearch"
+    ></article-nav>
     <!-- 文章列表 -->
     <article-list
       :total="total"
@@ -21,9 +26,9 @@ export default {
   data() {
     return {
       articleForm: {
-        status: '',
+        status: null,
 
-        region: [],
+        channel: null,
         date: ''
       },
       // 频道
@@ -42,7 +47,9 @@ export default {
       // 当前页
       currentPage: 1,
       // 页数大小
-      pageSize: 25
+      pageSize: 25,
+      // 状态
+      status: null
     }
   },
   components: {
@@ -63,15 +70,22 @@ export default {
     },
     // 获取文章列表（适用内容管理、评论管理、图文数据）
     loadArticleList(page = 1) {
-      getArticleList({ page, per_page: this.pageSize }).then(res => {
+      getArticleList({
+        page,
+        per_page: this.pageSize,
+        status: this.articleForm.status,
+        channel_id: this.articleForm.channel
+      }).then(res => {
         console.log(res)
         this.articleList = res.data.results
         this.total = res.data.total_count
-        console.log(this.articleList.cover.images[0])
       })
     },
     hanglePage(page) {
       this.loadArticleList(page)
+    },
+    hangdleSearch() {
+      this.loadArticleList(1)
     }
   }
 }
