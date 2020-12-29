@@ -5,7 +5,7 @@ export function request(config) {
   // 1. 创建axios实例
   const instance = axios.create({
     // baseURL: 'http://ttapi.research.itcast.cn',
-    baseURL: 'http://api-toutiao-web.itheima.net',
+    baseURL: 'http://rest.apizza.net/mock/027e324474700080d60b04c7c0126f57/',
     timeout: 5000,
   })
 
