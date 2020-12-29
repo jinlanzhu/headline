@@ -16,7 +16,9 @@
           </el-pagination>
         </el-tab-pane>
         <!-- 粉丝画像 -->
-        <el-tab-pane label="粉丝画像" name="second">粉丝画像</el-tab-pane>
+        <el-tab-pane label="粉丝画像" name="second">
+          <fans-echarts></fans-echarts>
+        </el-tab-pane>
       </el-tabs>
     </el-card>
   </div>
@@ -24,6 +26,7 @@
 
 <script>
 import FansListItem from './FansListItem'
+import FansEcharts from './FansEcharts'
 export default {
   props: ['fansList', 'total'],
   data() {
@@ -32,7 +35,8 @@ export default {
     }
   },
   components: {
-    FansListItem
+    FansListItem,
+    FansEcharts
   },
   methods: {
     handleClick() {}
