@@ -30,7 +30,16 @@ export default {
         // 频道
         channel: ''
       },
-      channels: []
+      channels: [],
+      article: {
+        id: '',
+        title: '',
+        status: '',
+        cover: {
+          type: '',
+          images: []
+        }
+      }
     }
   },
   components: {
