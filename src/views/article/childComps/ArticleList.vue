@@ -8,16 +8,20 @@
       <el-table :data="articleList" stripe style="width: 100%">
         <el-table-column label="封面">
           <template slot-scope="scope">
-            <!-- <img
+            <el-image
+              lazy
               class="article-cover"
-              :src="
-                scope.row.cover.images[0]
-                  ? scope.row.cover.images[0]
-                  : '/assets/img/article/no-cover.gif'
-              "
-              alt=""
-            /> -->
-            <img
+              :src="scope.row.cover.images[0]"
+              fit="cover"
+            >
+              <div slot="error" class="image-slot">
+                <img
+                  class="article-cover"
+                  src="@/assets/img/article/no-cover.gif"
+                  alt=""
+                /></div
+            ></el-image>
+            <!-- <img
               class="article-cover"
               v-if="scope.row.cover.images[0]"
               :src="scope.row.cover.images[0]"
@@ -28,7 +32,7 @@
               v-else
               src="@/assets/img/article/no-cover.gif"
               alt=""
-            />
+            /> -->
           </template>
         </el-table-column>
         <el-table-column prop="title" label="标题"> </el-table-column>

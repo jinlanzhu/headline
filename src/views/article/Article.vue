@@ -27,9 +27,8 @@ export default {
     return {
       articleForm: {
         status: null,
-
         channel: null,
-        date: ''
+        rangeDate: null
       },
       // 频道
       channels: [],
@@ -74,7 +73,13 @@ export default {
         page,
         per_page: this.pageSize,
         status: this.articleForm.status,
-        channel_id: this.articleForm.channel
+        channel_id: this.articleForm.channel,
+        begin_pubdate: this.articleForm.rangeDate
+          ? this.articleForm.rangeDate[0]
+          : null,
+        end_pubdate: this.articleForm.rangeDate
+          ? this.articleForm.rangeDate[1]
+          : null
       }).then(res => {
         console.log(res)
         this.articleList = res.data.results
