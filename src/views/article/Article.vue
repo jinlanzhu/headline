@@ -4,6 +4,7 @@
       :article-form="articleForm"
       :channels="channels"
       :status="status"
+      :loading="loading"
       @hangdleSearch="hangdleSearch"
     ></article-nav>
     <!-- 文章列表 -->
@@ -14,6 +15,7 @@
       :current-page="currentPage"
       @hanglePage="hanglePage"
       :page-size="pageSize"
+      :loading="loading"
     ></article-list>
   </div>
 </template>
@@ -48,7 +50,9 @@ export default {
       // 页数大小
       pageSize: 25,
       // 状态
-      status: null
+      status: null,
+      // 加载状态
+      loading: true
     }
   },
   components: {
@@ -69,6 +73,7 @@ export default {
     },
     // 获取文章列表（适用内容管理、评论管理、图文数据）
     loadArticleList(page = 1) {
+      this.loading = true
       getArticleList({
         page,
         per_page: this.pageSize,
@@ -84,6 +89,7 @@ export default {
         console.log(res)
         this.articleList = res.data.results
         this.total = res.data.total_count
+        this.loading = false
       })
     },
     hanglePage(page) {

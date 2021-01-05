@@ -5,7 +5,12 @@
         <span>根据筛选条件共查询到 {{ total }} 条结果：</span>
       </div>
       <!-- 文章列表 -->
-      <el-table :data="articleList" stripe style="width: 100%">
+      <el-table
+        :data="articleList"
+        stripe
+        style="width: 100%"
+        v-loading="loading"
+      >
         <el-table-column label="封面">
           <template slot-scope="scope">
             <el-image
@@ -108,6 +113,7 @@
         :current-page.sync="currentPage"
         @current-change="hanglePage"
         :page-size="pageSize"
+        :disabled="loading"
       >
       </el-pagination>
     </el-card>
@@ -116,7 +122,14 @@
 
 <script>
 export default {
-  props: ['articleList', 'total', 'articleStatus', 'currentPage', 'pageSize'],
+  props: [
+    'articleList',
+    'total',
+    'articleStatus',
+    'currentPage',
+    'pageSize',
+    'loading'
+  ],
   data() {
     return {}
   },

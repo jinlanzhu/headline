@@ -48,7 +48,11 @@
         </el-form-item>
 
         <el-form-item>
-          <el-button type="primary" size="small" @click="handleSearch"
+          <el-button
+            type="primary"
+            size="small"
+            @click="handleSearch"
+            :disabled="loading"
             >查询</el-button
           >
         </el-form-item>
@@ -59,7 +63,7 @@
 
 <script>
 export default {
-  props: ['articleForm', 'channels', 'status'],
+  props: ['articleForm', 'channels', 'status', 'loading'],
   data() {
     return {}
   },
