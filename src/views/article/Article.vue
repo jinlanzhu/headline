@@ -16,12 +16,17 @@
       @hanglePage="hanglePage"
       :page-size="pageSize"
       :loading="loading"
+      @deleteEvent="loadDeleteArticle"
     ></article-list>
   </div>
 </template>
 
 <script>
-import { getArticleChannels, getArticleList } from '@/network/article.js'
+import {
+  getArticleChannels,
+  getArticleList,
+  deleteArticleById
+} from '@/network/article.js'
 import ArticleNav from './childComps/ArticleNav'
 import ArticleList from './childComps/ArticleList'
 export default {
@@ -91,6 +96,25 @@ export default {
         this.total = res.data.total_count
         this.loading = false
       })
+    },
+    loadDeleteArticle(id) {
+      console.log(id)
+      console.log(id.toString())
+      this.$confirm('此操作将永久删除该文件, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      })
+        .then(() => {
+          deleteArticleById(id.toString()).then(res => {
+            console.log(res)
+          })
+          this.$message.success('删除成功！')
+          this.loadArticleList(this.currentPage)
+        })
+        .catch(() => {
+          this.$message.info('已取消删除！')
+        })
     },
     hanglePage(page) {
       this.loadArticleList(page)

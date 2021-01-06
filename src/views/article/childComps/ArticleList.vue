@@ -136,7 +136,10 @@ export default {
   components: {},
   methods: {
     editEvent(id) {},
-    deleteEvent(id) {},
+    deleteEvent(id) {
+      console.log(id)
+      this.$emit('deleteEvent', id)
+    },
     hanglePage(page) {
       console.log(page)
       this.$emit('hanglePage', page)
