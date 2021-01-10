@@ -13,9 +13,9 @@
       :article-list="articleList"
       :article-status="articleStatus"
       :current-page="currentPage"
-      @hanglePage="hanglePage"
       :page-size="pageSize"
       :loading="loading"
+      @hanglePage="hanglePage"
       @deleteEvent="loadDeleteArticle"
     ></article-list>
   </div>
@@ -117,7 +117,8 @@ export default {
         })
     },
     hanglePage(page) {
-      this.loadArticleList(page)
+      this.currentPage = page
+      this.loadArticleList(this.currentPage)
     },
     hangdleSearch() {
       this.loadArticleList(1)

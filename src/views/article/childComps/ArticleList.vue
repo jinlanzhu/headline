@@ -110,7 +110,7 @@
         background
         layout="prev, pager, next"
         :total="total"
-        :current-page.sync="currentPage"
+        :current-page="currentPage"
         @current-change="hanglePage"
         :page-size="pageSize"
         :disabled="loading"
