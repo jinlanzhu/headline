@@ -4,7 +4,7 @@ import { request } from './request'
 export function getArticleChannels() {
   return request({
     method: 'get',
-    url: '/app/v1_0/channels'
+    url: '/mp/v1_0/channels'
   })
 }
 
@@ -12,7 +12,7 @@ export function getArticleChannels() {
 export function getArticleList(params) {
   return request({
     method: 'get',
-    url: '/app/v1_0/articles',
+    url: '/mp/v1_0/articles',
     // Body 参数使用 data设置
     // Query 参数使用 params 设置
     // Headers 参数使用 Headers 设置
