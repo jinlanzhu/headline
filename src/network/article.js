@@ -27,6 +27,6 @@ export function deleteArticleById(articleId) {
   return request({
     method: 'delete',
     // url: `app/v1_0/articles/articleId`
-    url: `app/v1_0/articles/${articleId}`,
+    url: `mp/v1_0/articles/${articleId}`,
   })
 }
