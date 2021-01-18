@@ -4,11 +4,11 @@ import axios from 'axios'
 export function request(config) {
   // 1. 创建axios实例
   const instance = axios.create({
-    baseURL: 'http://rest.apizza.net/mock/027e324474700080d60b04c7c0126f57/',
+    // baseURL: 'http://rest.apizza.net/mock/027e324474700080d60b04c7c0126f57/',
     // baseURL: 'http://ttapi.research.itcast.cn',
     // baseURL: '/api', // 请求的基础路径
     // baseURL: 'http://api-toutiao-web.itheima.net',
-    // baseURL: 'http://api-toutiao-web.itheima.net',
+    baseURL: 'http://api-toutiao-web.itheima.net',
     // baseURL: 'http://api-toutiao-web.itheima.net/app/v1_0',
     timeout: 5000,
     // headers: {
@@ -38,6 +38,7 @@ export function request(config) {
     // 如果有用户信息，则统一设置
     if (user) {
       config.headers.Authorization = `Bearer ${user.token}`
+      // config.headers.Authorization = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2NDE1NTA4NjYsInVzZXJfaWQiOjEsInJlZnJlc2giOmZhbHNlLCJ2ZXJpZmllZCI6dHJ1ZX0.rVid35SUxCDD6IETW9UoSwserSob6bBMr4k1XyGilYg'
     }
     // 当这里 return config 之后请求才会真正的发出去
     return config

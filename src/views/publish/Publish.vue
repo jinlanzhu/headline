@@ -6,40 +6,41 @@
         <publish-nav></publish-nav>
       </div>
       <publish-form
-        :publish-form="publishForm"
+        ref="publishRef"
+        :article="article"
         :channels="channels"
+        @handlePublish="loadPublishArticle"
       ></publish-form>
     </el-card>
   </div>
 </template>
 
 <script>
-import { getArticleChannels, getArticleList } from '@/network/article.js'
+import {
+  getArticleChannels,
+  getArticleList,
+  addArticle
+} from '@/network/article.js'
 import PublishNav from './childComps/PublishNav'
 import PublishForm from './childComps/PublishForm'
 export default {
   data() {
     return {
-      publishForm: {
-        // 文章标题
-        name: '',
-        // 文章内容
-        desc: '',
-        // 文章封面
-        cover: '',
-        // 频道
-        channel: ''
-      },
       channels: [],
       article: {
-        id: '',
+        // 文章标题
         title: '',
-        status: '',
+        // 文章内容
+        content: '',
+        // 文章封面
         cover: {
-          type: '',
+          type: 0,
           images: []
-        }
-      }
+        },
+        // 频道
+        channel_id: null
+      },
+      draft: false
     }
   },
   components: {
@@ -55,6 +56,25 @@ export default {
       getArticleChannels().then(res => {
         console.log(res)
         this.channels = res.data.channels
+      })
+    },
+    // 添加文章
+    loadPublishArticle(msg) {
+      console.log(msg)
+      this.draft = msg
+      console.log(this.draft)
+      // console.log(draft)
+      console.log(this.article)
+      addArticle(this.article, this.draft).then(res => {
+        console.log(res)
+        console.log(this)
+        this.$refs.publishRef.$refs.publishForm.validate(valid => {
+          if (valid) {
+            this.$message.success('发布成功！')
+          } else {
+            this.$message.warning('请填写必须字段！')
+          }
+        })
       })
     }
   }

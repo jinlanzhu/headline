@@ -6,7 +6,7 @@ import { request } from './request'
 export function getUserProfile() {
   return request({
     method: 'get',
-    url: '/app/v1_0/user/profile',
+    url: '/mp/v1_0/user/profile',
     // 后端要求把需要授权的用户身份放到请求头中
     // axios 可以通过 headers 选项设置请求头
     // headers: {

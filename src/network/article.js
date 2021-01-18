@@ -4,7 +4,7 @@ import { request } from './request'
 export function getArticleChannels() {
   return request({
     method: 'get',
-    url: '/app/v1_0/channels'
+    url: '/mp/v1_0/channels'
   })
 }
 
@@ -12,10 +12,27 @@ export function getArticleChannels() {
 export function getArticleList(params) {
   return request({
     method: 'get',
-    url: '/app/v1_0/articles',
+    url: '/mp/v1_0/articles',
     // Body 参数使用 data设置
     // Query 参数使用 params 设置
     // Headers 参数使用 Headers 设置
     params
   })
 }
+
+/**
+ * 发表文章（新建）
+ * @param {*} data draft: 是否存为草稿（true 为草稿）
+ * @param {*} params 
+ */
+export function addArticle(data, draft = false) {
+  return request({
+    method: 'post',
+    url: '/mp/v1_0/articles',
+    data,
+    params: {
+      draft
+    }
+  })
+}
+
