@@ -70,6 +70,7 @@ export default {
         console.log(this)
         this.$refs.publishRef.$refs.publishForm.validate(valid => {
           if (valid) {
+            this.$router.push({ name: 'article' })
             this.$message.success('发布成功！')
           } else {
             this.$message.warning('请填写必须字段！')
