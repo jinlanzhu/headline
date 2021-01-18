@@ -21,6 +21,7 @@ export function getArticleList(params) {
 }
 
 /**
+
  * 发表文章（新建）
  * @param {*} data draft: 是否存为草稿（true 为草稿）
  * @param {*} params 
@@ -33,6 +34,17 @@ export function addArticle(data, draft = false) {
     params: {
       draft
     }
+  })
+}
+
+/*
+ * 删除文章
+ */
+export function deleteArticleById(articleId) {
+  return request({
+    method: 'delete',
+    // url: `app/v1_0/articles/articleId`
+    url: `mp/v1_0/articles/${articleId}`,
   })
 }
 

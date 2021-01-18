@@ -16,39 +16,45 @@
       <el-form ref="form" :model="articleForm" label-width="80px">
         <el-form-item label="状态：">
           <el-radio-group v-model="articleForm.status">
-            <el-radio label="全部"></el-radio>
-            <el-radio label="草稿"></el-radio>
-            <el-radio label="待审核"></el-radio>
-            <el-radio label="审核通过"></el-radio>
-            <el-radio label="审核失败"></el-radio>
-            <el-radio label="已删除"></el-radio>
+            <el-radio :label="null">全部</el-radio>
+            <el-radio :label="0">草稿</el-radio>
+            <el-radio :label="1">待审核</el-radio>
+            <el-radio :label="2">审核通过</el-radio>
+            <el-radio :label="3">审核失败</el-radio>
+            <el-radio :label="4">已删除</el-radio>
           </el-radio-group>
         </el-form-item>
         <el-form-item label="频道：">
-          <el-select v-model="articleForm.region" placeholder="请选择">
+          <el-select v-model="articleForm.channel" placeholder="请选择">
+            <el-option label="全部" :value="null"></el-option>
             <el-option
               v-for="(item, index) in channels"
               :key="index"
               :label="item.name"
-              :value="item.name"
+              :value="item.id"
             ></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="日期：">
           <el-date-picker
-            v-model="articleForm.date"
-            type="datetimerange"
-            :picker-options="pickerOptions"
+            v-model="articleForm.rangeDate"
+            type="daterange"
             range-separator="至"
             start-placeholder="开始日期"
             end-placeholder="结束日期"
-            align="right"
+            value-format="yyyy-MM-dd"
           >
           </el-date-picker>
         </el-form-item>
 
         <el-form-item>
-          <el-button type="primary" size="small">筛选</el-button>
+          <el-button
+            type="primary"
+            size="small"
+            @click="handleSearch"
+            :disabled="loading"
+            >查询</el-button
+          >
         </el-form-item>
       </el-form>
     </el-card>
@@ -57,45 +63,16 @@
 
 <script>
 export default {
-  props: ['articleForm', 'channels'],
+  props: ['articleForm', 'channels', 'status', 'loading'],
   data() {
-    return {
-      pickerOptions: {
-        shortcuts: [
-          {
-            text: '最近一周',
-            onClick(picker) {
-              const end = new Date()
-              const start = new Date()
-              start.setTime(start.getTime() - 3600 * 1000 * 24 * 7)
-              picker.$emit('pick', [start, end])
-            }
-          },
-          {
-            text: '最近一个月',
-            onClick(picker) {
-              const end = new Date()
-              const start = new Date()
-              start.setTime(start.getTime() - 3600 * 1000 * 24 * 30)
-              picker.$emit('pick', [start, end])
-            }
-          },
-          {
-            text: '最近三个月',
-            onClick(picker) {
-              const end = new Date()
-              const start = new Date()
-              start.setTime(start.getTime() - 3600 * 1000 * 24 * 90)
-              picker.$emit('pick', [start, end])
-            }
-          }
-        ]
-      },
-      value1: [new Date(2000, 10, 10, 10, 10), new Date(2000, 10, 11, 10, 10)],
-      value2: ''
-    }
+    return {}
   },
-  components: {}
+  components: {},
+  methods: {
+    handleSearch() {
+      this.$emit('hangdleSearch')
+    }
+  }
 }
 </script>
 

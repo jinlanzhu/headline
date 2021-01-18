@@ -1,4 +1,5 @@
 import axios from 'axios'
+import JSONbig from 'json-bigint'
 
 
 export function request(config) {
@@ -9,12 +10,24 @@ export function request(config) {
     // baseURL: '/api', // 请求的基础路径
     // baseURL: 'http://api-toutiao-web.itheima.net',
     baseURL: 'http://api-toutiao-web.itheima.net',
-    // baseURL: 'http://api-toutiao-web.itheima.net/app/v1_0',
-    timeout: 5000,
+
     // headers: {
     //   'Content-Type': "application/json;charset=utf-8"
     // }
 
+
+    // baseURL: 'http://rest.apizza.net/mock/027e324474700080d60b04c7c0126f57/',
+    timeout: 5000,
+    headers: { 'Content-Type': '	application/json' },
+    transformResponse: [function (data) {
+      // Do whatever you want to transform the data
+      try {
+        return JSONbig.parse(data)
+      } catch {
+        return data;
+      }
+
+    }],
 
   })
 
