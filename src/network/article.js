@@ -48,3 +48,31 @@ export function deleteArticleById(articleId) {
   })
 }
 
+
+/**
+ * 编辑文章
+ * @param {*} articleId 
+ * @param {*} data 
+ * @param {*} draft 
+ */
+export function updateArticleById(articleId, data, draft = false) {
+  return request({
+    method: 'put',
+    url: `mp/v1_0/articles/${articleId}`,
+    params: {
+      draft
+    },
+    data
+  })
+}
+
+/**
+ * 获取指定文章
+ * @param {*} articleId 
+ */
+export function getArticleById(articleId) {
+  return request({
+    method: 'get',
+    url: `/mp/v1_0/articles/${articleId}`
+  })
+}

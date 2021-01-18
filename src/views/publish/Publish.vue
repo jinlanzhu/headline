@@ -19,7 +19,9 @@
 import {
   getArticleChannels,
   getArticleList,
-  addArticle
+  addArticle,
+  getArticleById,
+  updateArticleById
 } from '@/network/article.js'
 import PublishNav from './childComps/PublishNav'
 import PublishForm from './childComps/PublishForm'
@@ -49,6 +51,9 @@ export default {
   },
   created() {
     this.loadArticleChannels()
+    if (this.$route.query.id) {
+      this.loadArticleById()
+    }
   },
   methods: {
     // 加载频道
@@ -65,17 +70,41 @@ export default {
       console.log(this.draft)
       // console.log(draft)
       console.log(this.article)
-      addArticle(this.article, this.draft).then(res => {
-        console.log(res)
-        console.log(this)
-        this.$refs.publishRef.$refs.publishForm.validate(valid => {
-          if (valid) {
-            this.$router.push({ name: 'article' })
-            this.$message.success('发布成功！')
-          } else {
-            this.$message.warning('请填写必须字段！')
+
+      // 如果有路径后有文章id，则执行修改操作，若没有，则执行添加操作
+      if (this.$route.query.id) {
+        updateArticleById(this.$route.query.id, this.article, this.draft).then(
+          res => {
+            console.log(res)
+            this.$refs.publishRef.$refs.publishForm.validate(valid => {
+              if (valid) {
+                this.$router.push({ name: 'article' })
+                this.$message.success('更新成功！')
+              } else {
+                this.$message.warning('请填写必须字段！')
+              }
+            })
           }
+        )
+      } else {
+        addArticle(this.article, this.draft).then(res => {
+          console.log(res)
+          console.log(this)
+          this.$refs.publishRef.$refs.publishForm.validate(valid => {
+            if (valid) {
+              this.$router.push({ name: 'article' })
+              this.$message.success('发布成功！')
+            } else {
+              this.$message.warning('请填写必须字段！')
+            }
+          })
         })
+      }
+    },
+    loadArticleById() {
+      getArticleById(this.$route.query.id).then(res => {
+        console.log(res)
+        this.article = res.data
       })
     }
   }
