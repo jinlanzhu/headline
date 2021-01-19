@@ -17,6 +17,7 @@
       :loading="loading"
       @hanglePage="hanglePage"
       @deleteEvent="loadDeleteArticle"
+      @editEvent="loadEditArticle"
     ></article-list>
   </div>
 </template>
@@ -115,6 +116,9 @@ export default {
         .catch(() => {
           this.$message.info('已取消删除！')
         })
+    },
+    loadEditArticle(id) {
+      this.$router.push('/publish?id=' + id)
     },
     hanglePage(page) {
       this.currentPage = page

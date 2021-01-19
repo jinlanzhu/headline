@@ -40,7 +40,9 @@
       </el-form-item>
 
       <el-form-item>
-        <el-button type="primary" @click="handlePublish(false)">发表</el-button>
+        <el-button type="primary" @click="handlePublish(false)">{{
+          $route.query.id ? '更新' : '发布'
+        }}</el-button>
         <el-button @click="handlePublish(true)">存入草稿</el-button>
       </el-form-item>
     </el-form>
