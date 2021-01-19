@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 module.exports = {
   devServer: {
     proxy: {  //配置跨域
@@ -14,3 +15,19 @@ module.exports = {
     }
   },
 }
+=======
+// module.exports = {
+//   devServer: {
+//     proxy: {
+//       '/api': {
+//         target: 'http://ttapi.research.itcast.cn/',
+//         changeOrigin: true,
+//         ws: true,
+//         pathRewrite: {
+//           '^/api/': ''
+//         }
+//       }
+//     }
+//   }
+// }
+>>>>>>> article

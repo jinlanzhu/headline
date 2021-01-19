@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { getImagesList } from '@/network/images.js'
+import { getImagesList } from '@/network/image.js'
 import ImagesList from './childComps/ImagesList'
 export default {
   data() {
