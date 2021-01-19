@@ -88,10 +88,22 @@ export default {
       publishRules: {
         title: [
           { required: true, message: '标题必填', trigger: 'blur' },
-          { min: 5, max: 15, message: '长度在 5 到 15 个字符', trigger: 'blur' }
+          { min: 5, max: 30, message: '长度在 5 到 30 个字符', trigger: 'blur' }
         ],
-        content: [{ required: true, message: '内容必填', trigger: 'blur' }],
-        channel_id: [{ required: true, message: '频道必选', trigger: 'blur' }]
+        content: [
+          {
+            validator(rule, value, callback) {
+              if (value === '<p></p>') {
+                callback(new Error('请输入文章内容'))
+              } else {
+                callback()
+              }
+            },
+            trigger: 'blur'
+          },
+          { required: true, message: '内容必填', trigger: 'blur' }
+        ],
+        channel_id: [{ required: true, message: '频道必选' }]
       },
       extensions: [
         new Doc(),
