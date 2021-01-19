@@ -11,7 +11,14 @@
         <el-input v-model="article.title" class="publish-name"></el-input>
       </el-form-item>
       <el-form-item label="内容：" prop="content">
-        <el-input type="textarea" v-model="article.content"></el-input>
+        <!-- <el-input type="textarea" v-model="article.content"></el-input> -->
+        <el-tiptap
+          lang="zh"
+          v-model="article.content"
+          :extensions="extensions"
+          placeholder="请输入文章内容"
+          height="320"
+        />
       </el-form-item>
       <el-form-item label="封面：">
         <el-radio-group v-model="article.cover.type">
@@ -41,6 +48,37 @@
 </template>
 
 <script>
+import {
+  ElementTiptap,
+  // 需要的 extensions
+  Doc,
+  Text,
+  Paragraph,
+  Heading,
+  Bold,
+  Underline,
+  Italic,
+  Image,
+  Strike,
+  ListItem,
+  BulletList,
+  OrderedList,
+  Table,
+  TableHeader,
+  TableCell,
+  TableRow,
+  CodeBlock,
+  Blockquote,
+  Indent,
+  FontSize,
+  FontType,
+  Preview,
+  Fullscreen
+} from 'element-tiptap'
+// import element-tiptap 样式
+import 'element-tiptap/lib/index.css'
+
+import { uploadImage } from '@/network/image.js'
 export default {
   props: ['publishForm', 'article', 'channels'],
   data() {
@@ -52,10 +90,49 @@ export default {
         ],
         content: [{ required: true, message: '内容必填', trigger: 'blur' }],
         channel_id: [{ required: true, message: '频道必选', trigger: 'blur' }]
-      }
+      },
+      extensions: [
+        new Doc(),
+        new Text(),
+        new Paragraph(),
+        new Heading({ level: 5 }),
+        new Bold({ bubble: true }), // 在气泡菜单中渲染菜单按钮
+        new Underline({ bubble: true, menubar: false }), // 在气泡菜单而不在菜单栏中渲染菜单按钮
+        new Italic(),
+        new Strike(),
+        new Blockquote(),
+        new CodeBlock(),
+        new Indent(),
+        new FontSize(),
+        new FontType(),
+        new Table(),
+        new TableHeader(),
+        new TableCell(),
+        new TableRow(),
+        new ListItem(),
+        new BulletList(),
+        new OrderedList(),
+        new Image({
+          //  uploadRequest: // 图片的上传方法，返回一个 Promise<url>
+          uploadRequest(file) {
+            console.log(file)
+            const form = new FormData()
+            console.log(form)
+            form.append('image', file)
+            return uploadImage(form).then(res => {
+              console.log(res)
+              return res.data.url
+            })
+          }
+        }),
+        new Fullscreen(),
+        new Preview()
+      ]
     }
   },
-  components: {},
+  components: {
+    'el-tiptap': ElementTiptap
+  },
   methods: {
     handlePublish(msg) {
       console.log(msg)
