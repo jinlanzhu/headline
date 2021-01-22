@@ -4,6 +4,7 @@ const Login = () => import('@/views/login/Login.vue')
 const Home = () => import('@/views/home/Home.vue')
 const Layout = () => import('@/views/layout/Layout.vue')
 const Article = () => import('@/views/article/Article.vue')
+const Comment = () => import('@/views/comment/Comment.vue')
 
 Vue.use(VueRouter)
 
@@ -26,6 +27,11 @@ const routes = [
         path: 'article',
         name: 'article',
         component: Article
+      },
+      {
+        path: 'comment',
+        name: 'comment',
+        component: Comment
       }
     ]
   }
