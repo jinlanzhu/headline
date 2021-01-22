@@ -5,6 +5,9 @@ const Home = () => import('@/views/home/Home.vue')
 const Layout = () => import('@/views/layout/Layout.vue')
 const Article = () => import('@/views/article/Article.vue')
 const Comment = () => import('@/views/comment/Comment.vue')
+const Fans = () => import('@/views/fans/Fans.vue')
+const Publish = () => import('@/views/publish/Publish.vue')
+
 
 Vue.use(VueRouter)
 
@@ -29,14 +32,22 @@ const routes = [
         component: Article
       },
       {
+
         path: 'comment',
         name: 'comment',
         component: Comment
+      }, {
+        path: 'fans',
+        name: 'fans',
+        component: Fans
+      },
+      {
+        path: 'publish',
+        name: 'publish',
+        component: Publish
       }
     ]
   }
-
-
 ]
 
 const router = new VueRouter({
