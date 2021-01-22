@@ -11,3 +11,19 @@ export const getCommentList = (params) => {
     params
   })
 }
+
+/**
+ * 修改文章评论状态
+ * @param {*} articleId 
+ * @param {*} data 
+ */
+export const editCommentStatus = (article_id, data) => {
+  return request({
+    method: 'put',
+    url: '/mp/v1_0/comments/status',
+    params: {
+      article_id
+    },
+    data
+  })
+}

@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { getCommentList } from '@/network/comment.js'
+import { getCommentList, editCommentStatus } from '@/network/comment.js'
 import CommentList from './childComps/CommentList'
 export default {
   data() {
@@ -62,13 +62,18 @@ export default {
         }
       )
         .then(() => {
-          comment.comment_status = !comment.comment_status
-          this.$message({
-            type: 'success',
-            message:
-              comment.comment_status == true
-                ? '关闭评论成功!'
-                : '打开评论成功！'
+          editCommentStatus(comment.id, {
+            allow_comment: !comment.comment_status
+          }).then(res => {
+            console.log(res)
+            comment.comment_status = res.data.allow_comment
+            this.$message({
+              type: 'success',
+              message:
+                comment.comment_status == true
+                  ? '关闭评论成功!'
+                  : '打开评论成功！'
+            })
           })
         })
         .catch(() => {
