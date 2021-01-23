@@ -7,6 +7,7 @@ const Article = () => import('@/views/article/Article.vue')
 const Comment = () => import('@/views/comment/Comment.vue')
 const Fans = () => import('@/views/fans/Fans.vue')
 const Publish = () => import('@/views/publish/Publish.vue')
+const Profile = () => import('@/views/profile/Profile.vue')
 
 
 Vue.use(VueRouter)
@@ -45,6 +46,11 @@ const routes = [
         path: 'publish',
         name: 'publish',
         component: Publish
+      },
+      {
+        path: 'profile',
+        name: 'profile',
+        component: Profile
       }
     ]
   }
