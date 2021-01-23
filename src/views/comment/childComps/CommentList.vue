@@ -21,7 +21,15 @@
         </el-table-column>
         <el-table-column label="操作">
           <template slot-scope="scope">
-            <el-button
+            <el-switch
+              v-model="scope.row.comment_status"
+              active-color="#13ce66"
+              inactive-color="#ff4949"
+              :disabled="scope.row.statusDisabled"
+              @change="onChangeStatus(scope.row)"
+            >
+            </el-switch>
+            <!-- <el-button
               v-if="scope.row.comment_status == true"
               type="danger"
               effect="dark"
@@ -38,7 +46,7 @@
               :loading="loading"
               @click="onChangeStatus(scope.row)"
               >打开评论</el-button
-            >
+            > -->
           </template>
         </el-table-column>
       </el-table>

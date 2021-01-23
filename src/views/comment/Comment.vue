@@ -45,43 +45,57 @@ export default {
       }).then(res => {
         console.log(res)
         this.commentList = res.data.results
+        this.commentList.forEach(comment => {
+          comment.statusDisabled = false
+        })
         this.total = res.data.total_count
         this.loading = false
       })
     },
     onChangeStatus(comment) {
-      this.$confirm(
-        comment.comment_status == true
-          ? '亲，您是否要关闭当前文章评论功能，如果关闭读者将无法对这篇文章进行评论。'
-          : '亲，您是否要打开当前文章评论功能。',
-        '温馨提示',
-        {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
+      comment.statusDisabled = true
+      editCommentStatus(comment.id.toString(), comment.comment_status).then(
+        res => {
+          console.log(res)
+          comment.statusDisabled = false
+          this.$message.success(
+            comment.comment_status == true ? '打开评论成功!' : '关闭评论成功！'
+          )
         }
       )
-        .then(() => {
-          editCommentStatus(comment.id, {
-            allow_comment: !comment.comment_status
-          }).then(res => {
-            console.log(res)
-            comment.comment_status = res.data.allow_comment
-            this.$message({
-              type: 'success',
-              message:
-                comment.comment_status == true
-                  ? '关闭评论成功!'
-                  : '打开评论成功！'
-            })
-          })
-        })
-        .catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消'
-          })
-        })
+
+      // this.$confirm(
+      //   comment.comment_status == true
+      //     ? '亲，您是否要关闭当前文章评论功能，如果关闭读者将无法对这篇文章进行评论。'
+      //     : '亲，您是否要打开当前文章评论功能。',
+      //   '温馨提示',
+      //   {
+      //     confirmButtonText: '确定',
+      //     cancelButtonText: '取消',
+      //     type: 'warning'
+      //   }
+      // )
+      //   .then(() => {
+      //     editCommentStatus(comment.id.toString(), {
+      //       allow_comment: !comment.comment_status
+      //     }).then(res => {
+      //       console.log(res)
+      //       comment.comment_status = res.data.allow_comment
+      //       this.$message({
+      //         type: 'success',
+      //         message:
+      //           comment.comment_status == true
+      //             ? '关闭评论成功!'
+      //             : '打开评论成功！'
+      //       })
+      //     })
+      //   })
+      //   .catch(() => {
+      //     this.$message({
+      //       type: 'info',
+      //       message: '已取消'
+      //     })
+      //   })
     },
     handleCurrentChange(page) {
       this.currentPage = page

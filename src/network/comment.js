@@ -17,13 +17,15 @@ export const getCommentList = (params) => {
  * @param {*} articleId 
  * @param {*} data 
  */
-export const editCommentStatus = (article_id, data) => {
+export const editCommentStatus = (articleId, allowComment) => {
   return request({
     method: 'put',
     url: '/mp/v1_0/comments/status',
     params: {
-      article_id
+      article_id: articleId
     },
-    data
+    data: {
+      allow_comment: allowComment
+    }
   })
 }
