@@ -17,3 +17,27 @@ export function getUserProfile() {
     // }
   })
 }
+
+/**
+ * 编辑用户头像
+ * @param {*} data 
+ */
+export function updateAvatar(data) {
+  return request({
+    method: 'PATCH',
+    url: '/mp/v1_0/user/photo',
+    data
+  })
+}
+
+/**
+ * 编辑用户资料
+ * @param {*} data 
+ */
+export function updateProfileInfo(data) {
+  return request({
+    method: 'PATCH',
+    url: '/mp/v1_0/user/profile',
+    data
+  })
+}
