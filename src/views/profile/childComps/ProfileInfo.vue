@@ -36,7 +36,10 @@
             </el-form-item>
 
             <el-form-item>
-              <el-button type="primary" @click="onSaveSetting"
+              <el-button
+                type="primary"
+                @click="onSaveSetting"
+                :loading="loading"
                 >保存设置</el-button
               >
             </el-form-item>
@@ -92,7 +95,10 @@
               </div>
               <span slot="footer" class="dialog-footer">
                 <el-button @click="onHandleCancel">取 消</el-button>
-                <el-button type="primary" @click="onHandleSure"
+                <el-button
+                  type="primary"
+                  @click="onHandleSure"
+                  :loading="loading"
                   >确 定</el-button
                 >
               </span>
@@ -108,7 +114,13 @@
 import 'cropperjs/dist/cropper.css'
 import Cropper from 'cropperjs'
 export default {
-  props: ['profileInfo', 'editAvatarDialog', 'previewImg'],
+  props: [
+    'profileInfo',
+    'editAvatarDialog',
+    'previewImg',
+    'updatePhotoLoading',
+    'loading'
+  ],
   data() {
     const user = JSON.parse(window.sessionStorage.getItem('user'))
     return {
@@ -153,7 +165,6 @@ export default {
     // Dialog 打开动画结束时的回调
     onDialogOpened() {
       const image = this.$refs.imgRef
-      console.log(image)
       if (this.cropper) {
         this.cropper.replace(this.previewImg)
         return
@@ -182,12 +193,14 @@ export default {
       this.$emit('onHandleCancel')
     },
     onHandleSure() {
+      // 获取裁切的图片对象
       this.cropper.getCroppedCanvas().toBlob(file => {
         console.log(file)
         const formData = new FormData()
         formData.append('photo', file)
-        console.log(formData)
-        this.$emit('onHandleSure', formData)
+        const photo = window.URL.createObjectURL(file)
+        console.log(photo)
+        this.$emit('onHandleSure', formData, photo)
       })
     }
   }

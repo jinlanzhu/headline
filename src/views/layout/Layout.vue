@@ -25,11 +25,16 @@ import { getUserProfile } from '@/network/user.js'
 
 import LayAside from './childComps/Aside.vue'
 import LayHeader from './childComps/Header.vue'
+import ProfileInfoVue from '../profile/childComps/ProfileInfo.vue'
 export default {
   data() {
     return {
       isCollapse: false,
-      userInfo: {}
+      userInfo: {
+        // id: null,
+        // name: '',
+        // photo: ''
+      }
     }
   },
   components: {
@@ -37,8 +42,15 @@ export default {
     LayHeader
   },
   created() {
+    console.log(this.userInfo)
     this.loadUserProfile()
+    this.$bus.$on('update-user', profileInfo => {
+      console.log(profileInfo)
+      this.userInfo.name = profileInfo.name
+      this.userInfo.photo = profileInfo.photo
+    })
   },
+  mounted() {},
   methods: {
     // 加载个人信息资料
     loadUserProfile() {
@@ -69,6 +81,9 @@ export default {
           this.$message.info('已取消退出')
         })
     }
+    // onProfilePhoto(photo) {
+    //   console.log(photo)
+    // }
   }
 }
 </script>
