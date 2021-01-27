@@ -19,6 +19,12 @@
         <el-tab-pane label="粉丝画像" name="second">
           <fans-echarts></fans-echarts>
         </el-tab-pane>
+        <el-tab-pane label="地图实例" name="third">
+          <map-demo></map-demo>
+        </el-tab-pane>
+        <el-tab-pane label="地图-HELLOWORLD" name="four">
+          <map-hello-world></map-hello-world>
+        </el-tab-pane>
       </el-tabs>
     </el-card>
   </div>
@@ -27,6 +33,8 @@
 <script>
 import FansListItem from './FansListItem'
 import FansEcharts from './FansEcharts'
+import MapDemo from './MapDemo'
+import MapHelloWorld from './MapHelloWorld'
 export default {
   props: ['fansList', 'total'],
   data() {
@@ -36,7 +44,9 @@ export default {
   },
   components: {
     FansListItem,
-    FansEcharts
+    FansEcharts,
+    MapDemo,
+    MapHelloWorld
   },
   methods: {
     handleClick() {}

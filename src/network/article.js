@@ -4,7 +4,7 @@ import { request } from './request'
 export function getArticleChannels() {
   return request({
     method: 'get',
-    url: '/app/v1_0/channels'
+    url: '/mp/v1_0/channels'
   })
 }
 

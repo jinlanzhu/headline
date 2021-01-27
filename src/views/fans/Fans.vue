@@ -8,6 +8,7 @@
 import { getFansList } from '@/network/fans.js'
 
 import FansList from './childComps/FansList'
+
 export default {
   data() {
     return {
