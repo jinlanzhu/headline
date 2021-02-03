@@ -23,8 +23,10 @@ import {
   getArticleById,
   updateArticleById
 } from '@/network/article.js'
+
 import PublishNav from './childComps/PublishNav'
 import PublishForm from './childComps/PublishForm'
+
 export default {
   data() {
     return {
@@ -43,6 +45,8 @@ export default {
         channel_id: null
       },
       draft: false
+      // coverDialog: false,
+      // formData: null
     }
   },
   components: {
@@ -105,6 +109,37 @@ export default {
       getArticleById(this.$route.query.id).then(res => {
         console.log(res)
         this.article = res.data
+      })
+    },
+    showUploadDialog() {
+      this.coverDialog = true
+    },
+    handleClose() {
+      this.coverDialog = false
+    },
+    handleAvatarSuccess(res, file) {
+      const fd = new FormData()
+      fd.append('image', file.raw)
+      console.log(fd)
+      // this.formData = fd
+    },
+    onChangeFile(file, data) {
+      console.log(file)
+      console.log(data)
+      const fd = new FormData()
+      fd.append('image', file)
+      this.formData = fd
+      console.log(this.formData)
+    },
+    handleSaveImages() {
+      console.log(this)
+      uploadImage(this.formData).then(res => {
+        console.log(res)
+        this.$refs.publishRef.$refs['upload-cover'][0].$refs[
+          'preview-cover'
+        ].src = res.data.url
+        this.coverDialog = false
+        this.$message.success('上传图片成功！')
       })
     }
   }

@@ -27,6 +27,31 @@
           <el-radio :label="0">无图</el-radio>
           <el-radio :label="-1">自动</el-radio>
         </el-radio-group>
+        <template v-if="article.cover.type > 0">
+          <upload-cover
+            v-for="(item, index) in article.cover.type"
+            :key="index"
+            v-model="article.cover.images[index]"
+          />
+          <!-- 这种方式图片的回显会有问题 -->
+          <!-- <upload-cover
+            v-for="(item, index) in article.cover.type"
+            :key="index"
+            :cover-image="article.cover.images[index]"
+            @onSaveUpload="onSaveUpload(index, $event)"
+          /> -->
+          <!-- <upload-cover2
+            ref="upload-cover"
+            :item="item"
+            :cover-dialog="coverDialog"
+            v-for="(item, index) in article.cover.type"
+            :key="index"
+            @showUploadDialog="showUploadDialog"
+            @handleClose="handleClose"
+            @onChangeFile="onChangeFile"
+            @onSaveUpload="onSaveUpload"
+          /> -->
+        </template>
       </el-form-item>
       <el-form-item label="频道：" prop="channel_id">
         <el-select v-model="article.channel_id" placeholder="请选择频道">
@@ -80,7 +105,11 @@ import {
 // import element-tiptap 样式
 import 'element-tiptap/lib/index.css'
 
+// import { uploadImage } from '@/network/image.js'
 import { uploadImage } from '@/network/image.js'
+
+import UploadCover from './UploadCover'
+import UploadCover2 from './UploadCover2'
 export default {
   props: ['publishForm', 'article', 'channels'],
   data() {
@@ -145,12 +174,50 @@ export default {
     }
   },
   components: {
-    'el-tiptap': ElementTiptap
+    'el-tiptap': ElementTiptap,
+    UploadCover,
+    UploadCover2
   },
   methods: {
+    onClickItem(item) {
+      console.log(item)
+    },
     handlePublish(msg) {
       console.log(msg)
       this.$emit('handlePublish', msg)
+    },
+    showUploadDialog() {
+      this.coverDialog = true
+      // this.$emit('showUploadDialog')
+    },
+    handleClose() {
+      this.coverDialog = false
+      // this.$emit('handleClose')
+    },
+    onChangeFile(file, data) {
+      console.log(file)
+      console.log(data)
+      const fd = new FormData()
+      fd.append('image', file)
+      this.formData = fd
+      console.log(this.formData)
+    },
+    handleAvatarSuccess(res, file) {
+      this.$emit('handleAvatarSuccess', res, file)
+    },
+    // onSaveUpload() {
+    //   console.log(this)
+    //   uploadImage(this.formData).then(res => {
+    //     console.log(res)
+    //     this.$refs['upload-cover'][0].$refs['preview-cover'].src = res.data.url
+    //     this.coverDialog = false
+    //     this.$message.success('上传图片成功！')
+    //   })
+    // }
+    onSaveUpload(index, url) {
+      console.log(index)
+      console.log(url)
+      this.article.cover.images[index] = url
     }
   }
 }
