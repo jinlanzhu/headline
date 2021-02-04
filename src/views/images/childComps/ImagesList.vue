@@ -116,6 +116,8 @@ export default {
       uploadHeaders: {
         Authorization: `Bearer ${user.token}`
       }
+
+      // addImagesDialog: false
       // addDialog: this.addImagesDialog
     }
   },

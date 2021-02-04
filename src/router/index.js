@@ -7,6 +7,7 @@ const Article = () => import('@/views/article/Article.vue')
 const Images = () => import('@/views/images/Images.vue')
 const Fans = () => import('@/views/fans/Fans.vue')
 const Publish = () => import('@/views/publish/Publish.vue')
+const Images2 = () => import('@/views/images/Images2.vue')
 
 
 Vue.use(VueRouter)
@@ -45,6 +46,11 @@ const routes = [
         path: 'publish',
         name: 'publish',
         component: Publish
+      },
+      {
+        path: 'images2',
+        name: 'images2',
+        component: Images2
       }
     ]
   }
