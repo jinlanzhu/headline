@@ -21,6 +21,10 @@
       <i class="iconfont icon-images"></i>
       <span slot="title">素材管理</span>
     </el-menu-item>
+    <el-menu-item index="/images2">
+      <i class="iconfont icon-images"></i>
+      <span slot="title">素材管理2</span>
+    </el-menu-item>
     <el-menu-item index="/publish">
       <i class="iconfont icon-koudaifabu"></i>
       <span slot="title">发布文章</span>

@@ -11,14 +11,11 @@
     >
       <el-tabs v-model="activeName" type="card">
         <el-tab-pane label="素材库" name="first">
-          <!-- <images-checked
-            :colle="colle"
-            :current-page="currentPage"
-            :total="total"
-            :images-list="imagesList"
-            :loading="loading"
-            @handlePage="handlePage"
-          /> -->
+          <images-list
+            :show-add-btn="false"
+            :show-position="false"
+            ref="images-list"
+          />
         </el-tab-pane>
         <el-tab-pane label="上传图片" name="second">
           <input type="file" ref="file" @change="onChangeFile" />
@@ -36,6 +33,7 @@
 <script>
 import { uploadImage, getImagesList } from '@/network/image.js'
 import ImagesChecked from './ImagesChecked'
+import ImagesList from '@/components/common/imagesList/ImagesList.vue'
 export default {
   props: ['value'],
   data() {
@@ -52,7 +50,8 @@ export default {
     }
   },
   components: {
-    ImagesChecked
+    ImagesChecked,
+    ImagesList
   },
   created() {
     this.loadImagesList()
@@ -99,6 +98,17 @@ export default {
           this.$emit('input', res.data.url)
           // this.$emit('onSaveUpload', res.data.url)
         })
+      } else if (this.activeName === 'first') {
+        console.log(this)
+        const imagesList = this.$refs['images-list']
+        const selected = imagesList.selected
+        console.log(selected)
+        if (selected == null) {
+          this.$message.info('请选择图片！')
+          return
+        }
+        this.coverDialog = false
+        this.$emit('input', imagesList.imagesList[selected].url)
       } else {
         this.$message.info('请选择文件！')
       }
