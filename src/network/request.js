@@ -1,5 +1,7 @@
 import axios from 'axios'
 import JSONbig from 'json-bigint'
+import router from '@/router'
+import { Message } from 'element-ui'
 
 export function request(config) {
   // 1. 创建axios实例
@@ -59,6 +61,22 @@ export function request(config) {
     return res.data
   }, err => {
     console.log(err);
+    console.dir(err)
+    const { status } = err.response
+    if (status === 401) {
+      // 将本地存储的user清除
+      window.sessionStorage.removeItem('user')
+      跳转到登录页面
+      router.push('/login')
+      Message.error('登录状态无效，请重新登录！')
+    } else if (status === 400) {
+      Message.error('参数错误，请检查请求参数！')
+    } else if (status === 403) {
+      Message.warning('没有操作权限！')
+    } else if (status >= 500) {
+      Message.error('服务器内部异常，请稍后重试！')
+    }
+    return Promise.reject(err);
   })
 
   // 3. 发送真正的网络请求
