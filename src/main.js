@@ -10,6 +10,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 
 import axios from 'axios'
 Vue.prototype.$axios = axios
+Vue.prototype.$bus = new Vue()
 
 
 Vue.use(ElementUI);

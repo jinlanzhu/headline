@@ -14,7 +14,7 @@
         </el-table-column>
         <el-table-column prop="fans_comment_count" label="粉丝评论数">
         </el-table-column>
-        <el-table-column label="状态">
+        <el-table-column label="评论状态">
           <template slot-scope="scope">
             {{ scope.row.comment_status ? '正常' : '关闭' }}
           </template>

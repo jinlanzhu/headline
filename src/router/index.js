@@ -11,7 +11,10 @@ const Comment = () => import('@/views/comment/Comment.vue')
 
 const Fans = () => import('@/views/fans/Fans.vue')
 const Publish = () => import('@/views/publish/Publish.vue')
+
 const Images2 = () => import('@/views/images/Images2.vue')
+
+const Profile = () => import('@/views/profile/Profile.vue')
 
 
 
@@ -60,6 +63,12 @@ const routes = [
         path: 'images2',
         name: 'images2',
         component: Images2
+
+      }, {
+        path: 'profile',
+        name: 'profile',
+        component: Profile
+
       }
     ]
   }
