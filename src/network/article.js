@@ -21,6 +21,23 @@ export function getArticleList(params) {
 }
 
 /**
+
+ * 发表文章（新建）
+ * @param {*} data draft: 是否存为草稿（true 为草稿）
+ * @param {*} params 
+ */
+export function addArticle(data, draft = false) {
+  return request({
+    method: 'post',
+    url: '/mp/v1_0/articles',
+    data,
+    params: {
+      draft
+    }
+  })
+}
+
+/*
  * 删除文章
  */
 export function deleteArticleById(articleId) {
@@ -28,5 +45,46 @@ export function deleteArticleById(articleId) {
     method: 'delete',
     // url: `app/v1_0/articles/articleId`
     url: `mp/v1_0/articles/${articleId}`,
+  })
+}
+
+
+/**
+ * 编辑文章
+ * @param {*} articleId 
+ * @param {*} data 
+ * @param {*} draft 
+ */
+export function updateArticleById(articleId, data, draft = false) {
+  return request({
+    method: 'put',
+    url: `mp/v1_0/articles/${articleId}`,
+    params: {
+      draft
+    },
+    data
+  })
+}
+
+/**
+ * 获取指定文章
+ * @param {*} articleId 
+ */
+export function getArticleById(articleId) {
+  return request({
+    method: 'get',
+    url: `/mp/v1_0/articles/${articleId}`
+  })
+}
+
+/**
+ * 上传用户图片素材
+ * @param {*} data 
+ */
+export const uploadImage = data => {
+  return request({
+    method: 'post',
+    url: '/mp/v1_0/user/images',
+    data
   })
 }

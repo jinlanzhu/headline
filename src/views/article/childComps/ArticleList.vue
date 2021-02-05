@@ -135,7 +135,10 @@ export default {
   },
   components: {},
   methods: {
-    editEvent(id) {},
+    editEvent(id) {
+      console.log(id.toString())
+      this.$emit('editEvent', id.toString())
+    },
     deleteEvent(id) {
       console.log(id)
       this.$emit('deleteEvent', id)

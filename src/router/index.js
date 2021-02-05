@@ -4,7 +4,11 @@ const Login = () => import('@/views/login/Login.vue')
 const Home = () => import('@/views/home/Home.vue')
 const Layout = () => import('@/views/layout/Layout.vue')
 const Article = () => import('@/views/article/Article.vue')
+const Images = () => import('@/views/images/Images.vue')
 const Fans = () => import('@/views/fans/Fans.vue')
+const Publish = () => import('@/views/publish/Publish.vue')
+const Images2 = () => import('@/views/images/Images2.vue')
+
 
 Vue.use(VueRouter)
 
@@ -29,14 +33,27 @@ const routes = [
         component: Article
       },
       {
+
+        path: 'images',
+        name: 'images',
+        component: Images
+      }, {
         path: 'fans',
         name: 'fans',
         component: Fans
+      },
+      {
+        path: 'publish',
+        name: 'publish',
+        component: Publish
+      },
+      {
+        path: 'images2',
+        name: 'images2',
+        component: Images2
       }
     ]
   }
-
-
 ]
 
 const router = new VueRouter({
